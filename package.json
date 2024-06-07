@@ -1,0 +1,23 @@
+{
+  "name": "hello-world-app",
+  "version": "1.0.0",
+  "description": "A simple Hello World Node.js app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "http": "^0.0.1-security"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udaychopade27/Node_HelloWorld_App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/udaychopade27/Node_HelloWorld_App/issues"
+  },
+  "homepage": "https://github.com/udaychopade27/Node_HelloWorld_App#readme"
+}
