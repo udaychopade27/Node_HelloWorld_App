@@ -23,6 +23,10 @@ resource "aws_subnet" "nodeapp_subnet" {
 
 data "aws_availability_zones" "available" {}
 
+
+
+
+
 resource "aws_security_group" "nodeapp_sg" {
   vpc_id = aws_vpc.nodeapp_vpc.id
 
@@ -44,6 +48,35 @@ resource "aws_security_group" "nodeapp_sg" {
     Name = "nodeapp-sg"
   }
 }
+
+# Create Internet Gateway
+resource "aws_internet_gateway" "example" {
+  vpc_id = aws_vpc.nodeapp_vpc.id
+
+  tags = {
+    Name = "example-igw"
+  }
+}
+
+# Attach Internet Gateway to VPC
+resource "aws_vpc_attachment" "example" {
+  vpc_id       = aws_vpc.nodeapp_vpc.id
+  internet_gateway_id = aws_internet_gateway.example.id
+}
+
+# Update Route Table to Route Traffic to Internet Gateway
+resource "aws_route" "example" {
+  route_table_id         = aws_route_table.example.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.example.id
+}
+
+# Example Route Table Association
+resource "aws_route_table_association" "example" {
+  subnet_id      = aws_subnet.nodeapp_subnet[0].id
+  route_table_id = aws_route_table.example.id
+}
+
 
 resource "aws_lb" "nodeapp_lb" {
   name               = "nodeapp-alb"
