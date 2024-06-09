@@ -79,7 +79,7 @@ resource "aws_lb_target_group" "nodeapp_tg" {
 }
 
 resource "aws_lb_listener" "nodeapp_listener" {
-  load_balancer_arn = aws_lb.hello_world_lb.arn
+  load_balancer_arn = aws_lb.nodeapp_lb.arn
   port              = 80
   protocol          = "HTTP"
 
