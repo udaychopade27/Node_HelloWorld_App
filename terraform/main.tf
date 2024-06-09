@@ -93,7 +93,7 @@ resource "aws_lb" "nodeapp_lb" {
 }
 
 resource "aws_lb_target_group" "nodeapp_tg" {
-  name     = "nodeapp-tg"
+  name     = "new-nodeapp-tg"
   port     = 80
   protocol = "HTTP"
   vpc_id   = aws_vpc.nodeapp_vpc.id
@@ -109,7 +109,7 @@ resource "aws_lb_target_group" "nodeapp_tg" {
   }
 
   tags = {
-    Name = "nodeapp-tg"
+    Name = "new-nodeapp-tg"
   }
 }
 
